@@ -141,6 +141,22 @@
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    /* Star Cursor Styles */
+    .cursor-star {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 24px;
+      height: 24px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Star_icon_stylized.svg/1024px-Star_icon_stylized.svg.png') no-repeat center center;
+      background-size: contain;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+      filter: drop-shadow(0 0 6px #ffc8dd);
+    }
   </style>
 </head>
 <body>
@@ -159,8 +175,6 @@
   </div>
 
   <main class="container">
-
-    <!-- Blind Bags -->
     <div class="products active" id="blindbags">
       <div class="product">
         <h3>Blind Bag ⭐</h3>
@@ -169,7 +183,6 @@
       </div>
     </div>
 
-    <!-- Stickers -->
     <div class="products" id="stickers">
       <div class="product">
         <h3>1 Sticker ⭐</h3>
@@ -198,7 +211,6 @@
       </div>
     </div>
 
-    <!-- Squishies -->
     <div class="products" id="squishies">
       <div class="product">
         <h3>Small Squishy ⭐</h3>
@@ -217,7 +229,6 @@
       </div>
     </div>
 
-    <!-- Photocards -->
     <div class="products" id="photocards">
       <div class="product">
         <h3>Photocard ⭐</h3>
@@ -235,42 +246,51 @@
       </div>
     </div>
 
-<!-- Cookbook -->
-<div class="products" id="cookbook">
-  <div class="product">
-    <h3>Sweets Cookbook ⭐</h3>
-    <p>$2.50</p>
-    <p>A mini cookbook filled with easy, adorable dessert recipes! 🍰</p>
-  </div>
-</div>
+    <!-- Cookbook -->
+    <div class="products" id="cookbook">
+      <div class="product">
+        <h3>Sweets Cookbook ⭐</h3>
+        <p>$2.50</p>
+        <p>A mini cookbook filled with easy, adorable dessert recipes! 🍰</p>
+      </div>
+    </div>
 
-<!-- Contact -->
-<div class="contact">
-  <h2>Need Help with Items, Custom Orders, ETC? ⭐</h2>
-  <p>Text / Email <strong>meekoshops@gmail.com</strong> anytime! 💌</p>
-  <p>We’re happy to help with questions, issues, or custom creations! 🎀</p>
-</div>
-</main>
+    <!-- Contact -->
+    <div class="contact">
+      <h2>Need Help with Items, Custom Orders, ETC? ⭐</h2>
+      <p>Text / Email <strong>meekoshops@gmail.com</strong> anytime! 💌</p>
+      <p>We’re happy to help with questions, issues, or custom creations! 🎀</p>
+    </div>
+  </main>
 
-<footer>
-  <p>© 2025 Meeko's Kawaii Corner — All things cute, made with love 💖</p>
-</footer>
+  <footer>
+    <p>© 2025 Meeko's Kawaii Corner — All things cute, made with love 💖</p>
+  </footer>
 
-<script>
-  const tabs = document.querySelectorAll('.tab-btn');
-  const sections = document.querySelectorAll('.products');
+  <!-- Star Cursor Element -->
+  <div class="cursor-star"></div>
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      // Remove active from all tabs and sections
-      tabs.forEach(btn => btn.classList.remove('active'));
-      sections.forEach(sec => sec.classList.remove('active'));
+  <script>
+    // Tab switching logic
+    const tabs = document.querySelectorAll('.tab-btn');
+    const sections = document.querySelectorAll('.products');
 
-      // Add active to clicked tab and related section
-      tab.classList.add('active');
-      document.getElementById(tab.dataset.tab).classList.add('active');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(btn => btn.classList.remove('active'));
+        sections.forEach(sec => sec.classList.remove('active'));
+
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
     });
-  });
-</script>
+
+    // Star cursor tracking (enabled on all devices)
+    const starCursor = document.querySelector('.cursor-star');
+    document.addEventListener('mousemove', e => {
+      starCursor.style.left = `${e.clientX}px`;
+      starCursor.style.top = `${e.clientY}px`;
+    });
+  </script>
 </body>
 </html>
