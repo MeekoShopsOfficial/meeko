@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🎀 Meeko's Kawaii Corner ⭐</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>🎀 Meeko's Kawaii Corner ⭐</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<!-- Add this YouTube API script here -->
+<script src="https://www.youtube.com/iframe_api"></script>
+<style>
     /* Custom Nexa Font */
     @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
     
@@ -555,10 +554,8 @@
       </div>
     </div>
   </div>
-
   <!-- Scroll Progress Bar -->
   <div class="progress-bar" id="progressBar"></div>
-
   <!-- Floating Background Elements -->
   <div class="floating-elements">
     <div class="floating-star" style="top: 10%; left: 10%;">⭐</div>
@@ -568,16 +565,92 @@
     <div class="floating-heart" style="top: 40%; left: 85%;">💕</div>
     <div class="floating-sparkle" style="top: 80%; left: 20%;">🎀</div>
   </div>
-
   <!-- Disclaimer Modal -->
   <div class="disclaimer-modal" id="disclaimer">
     <div class="disclaimer-content">
       <h3>🎀 What's New at Meeko's! 🎀</h3>
-      <p>We've added exciting new items and features to our kawaii corner! Check out our new <strong>Bundles</strong>, <strong>Birthday Cards</strong>, <strong>Custom Posters</strong>, money-saving <strong>Coupons</strong>, and more!</p>
+      <p>We've added exciting new items and features to our kawaii corner! Check out our newly added <strong>Bundles</strong>, <strong>B</strong>, <strong>Custom Posters</strong>, money-saving <strong>Coupons</strong>, and more!</p>
       <p>✨ <em>New items are being added regularly - keep checking back!</em> ✨</p>
       <button class="close-disclaimer" onclick="closeDisclaimer()">Got it! ⭐</button>
     </div>
   </div>
+
+  <!-- YouTube player container (hidden) -->
+  <div id="youtube-player" style="display: none;"></div>
+
+  <!-- Music control button -->
+  <button id="musicToggle" style="position: fixed; top: 10px; right: 10px; z-index: 1000; padding: 8px 12px; border: none; border-radius: 20px; background: #ccc; color: white; cursor: pointer; font-family: 'Lexend', sans-serif; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+    🎵 Music: OFF
+  </button>
+
+  <script>
+  let player;
+  let isPlaying = false;
+  let currentTrack = 0;
+  const toggle = document.getElementById('musicToggle');
+
+  // Your playlist video IDs
+  const playlist = [
+    'DSWYAclv2I8', // First song
+    'rKi3oL2UDew', // Second song
+    'zde7oFYW4Zg'  // Third song
+  ];
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('youtube-player', {
+      height: '0',
+      width: '0',
+      videoId: playlist[0],
+      playerVars: {
+        'autoplay': 0,
+        'controls': 0,
+        'loop': 0,
+        'start': 0,
+        'modestbranding': 1,
+        'rel': 0
+      },
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  function onPlayerReady(event) {
+    // Set volume (0-100)
+    event.target.setVolume(25);
+  }
+
+  function onPlayerStateChange(event) {
+    // When video ends, play next song
+    if (event.data === YT.PlayerState.ENDED) {
+      currentTrack++;
+      
+      // If we've played all songs, loop back to first
+      if (currentTrack >= playlist.length) {
+        currentTrack = 0;
+      }
+      
+      // Load and play next song
+      player.loadVideoById(playlist[currentTrack]);
+    }
+  }
+
+  // Music toggle functionality
+  toggle.addEventListener('click', () => {
+    if (isPlaying) {
+      player.pauseVideo();
+      toggle.textContent = '🎵 Music: OFF';
+      toggle.style.background = '#ccc';
+      isPlaying = false;
+    } else {
+      player.playVideo();
+      toggle.textContent = '🎵 Music: ON';
+      toggle.style.background = '#ff69b4';
+      isPlaying = true;
+    }
+  });
+  </script>
 
   <header>
     <h1>🎀 Meeko's Kawaii Corner 🎀</h1>
@@ -585,7 +658,8 @@
   </header>
 
   <div class="tabs">
-    <button class="tab-btn active" data-tab="blindbags">Blind Bags ⭐</button>
+    <button class="tab-btn active" data-tab="ownersPick">Owner's Pick 👑</button>
+    <button class="tab-btn" data-tab="blindbags">Blind Bags ⭐</button>
     <button class="tab-btn" data-tab="stickers">Stickers ⭐</button>
     <button class="tab-btn" data-tab="squishies">Squishies ⭐</button>
     <button class="tab-btn" data-tab="keychains">Keychains ⭐</button>
@@ -595,11 +669,29 @@
     <button class="tab-btn" data-tab="coupons">Coupons ⭐</button>
     <button class="tab-btn" data-tab="faq">FAQ ⭐</button>
     <button class="tab-btn" data-tab="credits">Credits ⭐</button>
-  </div>
-
+  </div>	
   <main class="container">
+    <!-- Owner's Pick -->
+    <div class="products active" id="ownersPick">
+      <div class="product">
+        <h3>Meeko's Small Bundle ⭐</h3>
+        <p>$7.99</p>
+        <p>A special themed bundle for mystery lovers with adorable goodies! Made just for you! 🎀</p>
+      </div>
+      <div class="product">
+        <h3>Mystery Kawaii Blind Bag Pack (x3) ⭐</h3>
+        <p>$6.99</p>
+        <p>Premium edition with exclusive items—surprise yourself with kawaii treasures! 🎁</p>
+      </div>
+      <div class="product">
+        <h3>Pastel Dreams Sticker Pack ⭐</h3>
+        <p>$2.99</p>
+        <p>Curated aesthetic stickers in soft pastels for the ultimate dreamy vibe! 🌸</p>
+      </div>
+    </div>
+
     <!-- Blind Bags -->
-    <div class="products active" id="blindbags">
+    <div class="products" id="blindbags">
       <div class="product">
         <h3>Blind Bag ⭐</h3>
         <p>$1.50 each</p>
