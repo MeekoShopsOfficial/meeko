@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>🎀 Meeko's Kawaii Corner ⭐</title>
@@ -440,20 +443,6 @@
       50% { transform: translate(-50%, -50%) scale(1.2); }
     }
 
-    /* Loading Animation */
-    .page-loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--gradient-1);
-      z-index: 10001;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
 
     .loader-content {
       text-align: center;
@@ -544,32 +533,11 @@
   </style>
 </head>
 <body>
-  <!-- Page Loader -->
-  <div class="page-loader" id="pageLoader">
-    <div class="loader-content">
-      <div class="loader-emoji">🎀</div>
-      <div class="loader-text">Loading ...</div>
-      <div class="loader-bar">
-        <div class="loader-progress"></div>
-      </div>
-    </div>
-  </div>
-  <!-- Scroll Progress Bar -->
-  <div class="progress-bar" id="progressBar"></div>
-  <!-- Floating Background Elements -->
-  <div class="floating-elements">
-    <div class="floating-star" style="top: 10%; left: 10%;">⭐</div>
-    <div class="floating-heart" style="top: 20%; right: 15%;">💖</div>
-    <div class="floating-sparkle" style="top: 60%; left: 5%;">✨</div>
-    <div class="floating-star" style="top: 70%; right: 10%;">🌟</div>
-    <div class="floating-heart" style="top: 40%; left: 85%;">💕</div>
-    <div class="floating-sparkle" style="top: 80%; left: 20%;">🎀</div>
-  </div>
   <!-- Disclaimer Modal -->
   <div class="disclaimer-modal" id="disclaimer">
     <div class="disclaimer-content">
       <h3>🎀 What's New at Meeko's! 🎀</h3>
-      <p>We've added exciting new items and features to our kawaii corner! Check out our newly added <strong>Bundles</strong>, <strong>B</strong>, <strong>Custom Posters</strong>, money-saving <strong>Coupons</strong>, and more!</p>
+      <p>We've added exciting new items and features to our kawaii corner! Check out our newly added <strong>Bundles</strong>, <strong>Lucky Papers</strong>, <strong>Custom Posters</strong>, money-saving <strong>Coupons</strong>, and more!</p>
       <p>✨ <em>New items are being added regularly - keep checking back!</em> ✨</p>
       <button class="close-disclaimer" onclick="closeDisclaimer()">Got it! ⭐</button>
     </div>
@@ -666,6 +634,7 @@
     <button class="tab-btn" data-tab="posters">Posters ⭐</button>
     <button class="tab-btn" data-tab="bdaycards">Birthday Cards ⭐</button>
     <button class="tab-btn" data-tab="bundles">Bundles ⭐</button>
+    <button class="tab-btn" data-tab="luckypapers">Lucky Papers ⭐</button>
     <button class="tab-btn" data-tab="coupons">Coupons ⭐</button>
     <button class="tab-btn" data-tab="faq">FAQ ⭐</button>
     <button class="tab-btn" data-tab="credits">Credits ⭐</button>
@@ -803,6 +772,25 @@
       </div>
     </div>
 
+    <!-- Lucky Papers -->
+    <div class="products" id="luckypapers">
+      <div class="product">
+        <h3>Lucky Paper Draw ⭐</h3>
+        <p>$3.00</p>
+        <p>The ultimate surprise! We cut up papers with different kawaii items written on them into tiny pieces. When you order, we randomly pull out a handful and that's what you get! Could be anything from our entire collection! 🎲</p>
+      </div>
+      <div class="product">
+        <h3>Double Lucky Draw ⭐</h3>
+        <p>$5.50</p>
+        <p>Feeling extra lucky? Get two handfuls of random paper pieces for double the surprise and double the kawaii magic! You never know what amazing combo you'll get! 🍀</p>
+      </div>
+      <div class="product">
+        <h3>Lucky Jackpot ⭐</h3>
+        <p>$8.00</p>
+        <p>The biggest gamble with the biggest rewards! Three generous handfuls of lucky papers - you could end up with the most amazing kawaii collection ever! Fortune favors the bold! 🎰</p>
+      </div>
+    </div>
+
     <!-- Coupons -->
     <div class="products" id="coupons">
       <div class="product">
@@ -821,6 +809,10 @@
       <div class="product">
         <h3>Who Is Meeko? ⭐</h3>
         <p>We get this question a LOT! Meeko is NOT a real person, (sadly) but it is a cute name for this business made by Emma and her cousin Isla!</p>
+      </div>
+      <div class="product">
+        <h3>What are Lucky Papers? ⭐</h3>
+        <p>Lucky Papers are our most exciting mystery option! We write different kawaii items on papers, cut them into tiny pieces, and randomly grab handfuls when you order. It's like a lottery for kawaii goodies - you could get anything from our entire collection!</p>
       </div>
       <div class="product">
         <h3>What's in a blind bag? ⭐</h3>
