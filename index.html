@@ -443,7 +443,6 @@
       50% { transform: translate(-50%, -50%) scale(1.2); }
     }
 
-
     .loader-content {
       text-align: center;
     }
@@ -530,14 +529,17 @@
       z-index: 1000;
       transition: width 0.1s ease;
     }
-  </style>
+</style>
 </head>
 <body>
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+  
   <!-- Disclaimer Modal -->
   <div class="disclaimer-modal" id="disclaimer">
     <div class="disclaimer-content">
       <h3>🎀 What's New at Meeko's! 🎀</h3>
-      <p>We've added exciting new items and features to our kawaii corner! Check out our newly added <strong>Bundles</strong>, <strong>Lucky Papers</strong>, <strong>Custom Posters</strong>, money-saving <strong>Coupons</strong>, and more!</p>
+      <p>We've added exciting new items and features to our kawaii corner! Check out our newly added <strong>Bundles</strong>, <strong>Lucky Papers</strong>, <strong>Custom Posters</strong>, <strong>Clay Rings & Jewelry Holders</strong>, money-saving <strong>Coupons</strong>, and more!</p>
       <p>✨ <em>New items are being added regularly - keep checking back!</em> ✨</p>
       <button class="close-disclaimer" onclick="closeDisclaimer()">Got it! ⭐</button>
     </div>
@@ -633,6 +635,7 @@
     <button class="tab-btn" data-tab="keychains">Keychains ⭐</button>
     <button class="tab-btn" data-tab="posters">Posters ⭐</button>
     <button class="tab-btn" data-tab="bdaycards">Birthday Cards ⭐</button>
+    <button class="tab-btn" data-tab="jewelry">Jewelry & Holders ⭐</button>
     <button class="tab-btn" data-tab="bundles">Bundles ⭐</button>
     <button class="tab-btn" data-tab="luckypapers">Lucky Papers ⭐</button>
     <button class="tab-btn" data-tab="coupons">Coupons ⭐</button>
@@ -653,9 +656,9 @@
         <p>Premium edition with exclusive items—surprise yourself with kawaii treasures! 🎁</p>
       </div>
       <div class="product">
-        <h3>Pastel Dreams Sticker Pack ⭐</h3>
-        <p>$2.99</p>
-        <p>Curated aesthetic stickers in soft pastels for the ultimate dreamy vibe! 🌸</p>
+        <h3>Handmade Clay Ring ⭐</h3>
+        <p>$2.00</p>
+        <p>Adorable handcrafted clay ring with kawaii designs - each one unique and made with love! Perfect for adding cute style to any outfit! 💍</p>
       </div>
     </div>
 
@@ -753,6 +756,25 @@
       </div>
     </div>
 
+    <!-- Jewelry & Holders -->
+    <div class="products" id="jewelry">
+      <div class="product">
+        <h3>Handmade Clay Ring ⭐</h3>
+        <p>$2.00</p>
+        <p>Adorable handcrafted clay ring with kawaii designs! Each one is unique and made with love. Choose from various cute themes and colors! 💍</p>
+      </div>
+      <div class="product">
+        <h3>Kawaii Jewelry Holder ⭐</h3>
+        <p>$4.50</p>
+        <p>Cute jewelry holder to organize your rings, earrings, and small accessories! Features adorable kawaii designs and helps keep your treasures safe! 💎</p>
+      </div>
+      <div class="product">
+        <h3>Mini Ring Dish ⭐</h3>
+        <p>$3.00</p>
+        <p>Small clay dish perfect for holding rings and tiny treasures! Hand-painted with kawaii motifs and perfect for your bedside table or desk! 🌸</p>
+      </div>
+    </div>
+
     <!-- Bundles -->
     <div class="products" id="bundles">
       <div class="product">
@@ -827,6 +849,10 @@
         <p>Anything drawable! Anime characters, pets, OCs, kawaii scenes, favorite animals, landscapes - just describe your vision and we'll bring it to life!</p>
       </div>
       <div class="product">
+        <h3>Are the clay rings adjustable? ⭐</h3>
+        <p>Our clay rings come in various sizes! When ordering, please let us know your ring size or if you'd prefer an adjustable band option. We want the perfect fit for your kawaii style!</p>
+      </div>
+      <div class="product">
         <h3>How long does shipping take? ⭐</h3>
         <p>Orders typically ship within 3-5 business days via standard mail! We package everything with extra kawaii care!</p>
       </div>
@@ -867,22 +893,15 @@
   <div class="cursor-star"></div>
 
   <script>
-    // Page Loader
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('pageLoader').style.opacity = '0';
-        setTimeout(() => {
-          document.getElementById('pageLoader').style.display = 'none';
-        }, 500);
-      }, 2000);
-    });
-
     // Scroll Progress Bar
     window.addEventListener('scroll', () => {
       const scrollTop = document.documentElement.scrollTop;
       const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrollPercent = (scrollTop / scrollHeight) * 100;
-      document.getElementById('progressBar').style.width = scrollPercent + '%';
+      const progressBar = document.getElementById('progressBar');
+      if (progressBar) {
+        progressBar.style.width = scrollPercent + '%';
+      }
     });
 
     // Disclaimer modal functionality
@@ -1106,7 +1125,7 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         const modal = document.getElementById('disclaimer');
-        if (modal.style.display !== 'none') {
+        if (modal && modal.style.display !== 'none') {
           closeDisclaimer();
         }
       }
@@ -1118,7 +1137,10 @@
       const scrollTop = document.documentElement.scrollTop;
       const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrollPercent = (scrollTop / scrollHeight) * 100;
-      document.getElementById('progressBar').style.width = scrollPercent + '%';
+      const progressBar = document.getElementById('progressBar');
+      if (progressBar) {
+        progressBar.style.width = scrollPercent + '%';
+      }
       ticking = false;
     }
 
